@@ -103,30 +103,35 @@ const Header = () => {
                 <div className="mt-6">
                   <nav className="grid gap-y-4">
                     {menuItems.map((item) => (
-                      <a
+                      <NavLink
+                        to={item.href}
                         key={item.name}
-                        href={item.href}
-                        className="-m-3 flex items-center rounded-md p-3 text-sm font-semibold hover:bg-gray-50"
+                        className={({ isActive }) =>
+                          `${
+                            isActive ? "bg-gray-50" : ""
+                          } -m-3 flex items-center rounded-md p-3 text-sm font-semibold hover:bg-gray-50`
+                        }
+                        onClick={() => setIsMenuOpen(false)}
                       >
-                        <span className="ml-3 text-base font-medium text-gray-900">
-                          {item.name}
-                        </span>
-                      </a>
+                        {item.name}
+                      </NavLink>
                     ))}
                   </nav>
                 </div>
-                <button
+                <Link
+                  to="/login"
                   type="button"
                   className="mt-4 w-full rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
                 >
                   Login
-                </button>
-                <button
+                </Link>
+                <Link
+                  to="/singup"
                   type="button"
                   className="mt-4 w-full items-center justify-center rounded-md border border-gray-400 bg-white  px-3 py-2 text-sm  font-semibold text-gray-700 transition-all duration-200 hover:bg-gray-100 hover:text-black focus:bg-gray-100 focus:text-black focus:outline-none"
                 >
                   Sign up
-                </button>
+                </Link>
               </div>
             </div>
           </div>
