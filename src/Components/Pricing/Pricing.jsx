@@ -88,9 +88,9 @@ const Pricing = () => {
           </div>
         </div>
         {/* faq */}
-        {faqs.map((faq) => (
-          <div className="grid md:grid-cols-3 md:space-x-8">
-            <div key={faq.id} className="my-8 space-y-5">
+        <div className="flex flex-wrap">
+          {faqs.map((faq) => (
+            <div key={faq.id} className=" mb-5 lg:basis-2/6">
               <div className="flex w-full flex-col space-y-2">
                 <p className="w-full text-lg font-semibold text-gray-900">
                   {faq.question}
@@ -100,8 +100,8 @@ const Pricing = () => {
                 </p>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
         <div className="mt-10">
           <div className="flex flex-col justify-between rounded-md bg-gray-50 p-4 md:flex-row md:items-center md:p-8 lg:space-x-8">
             <div className="space-y-2">
