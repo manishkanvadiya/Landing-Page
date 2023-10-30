@@ -1,6 +1,18 @@
-import React from "react";
-import { ChevronUp ,ChevronDown,CheckCircle} from "lucide-react";
+import React, { useState } from "react";
+import { ChevronUp, ChevronDown, CheckCircle } from "lucide-react";
+import { faqs } from "../../Assets/data";
+import { Link } from "react-router-dom";
 const Home = () => {
+  const [activeFaq, setActiveFaq] = useState(faqs[0].id);
+
+  const toggleFaq = (faq) => {
+    if (activeFaq === faq.id) {
+      setActiveFaq(null);
+    } else {
+      setActiveFaq(faq.id);
+    }
+  };
+
   return (
     <>
       {/* Hero Section */}
@@ -169,51 +181,44 @@ const Home = () => {
             </p>
           </div>
           <div className="mx-auto mt-8 max-w-3xl space-y-4 md:mt-16">
-            <div className="cursor-pointer rounded-md border border-gray-400 shadow-lg transition-all duration-200">
-              <button
-                type="button"
-                className="flex w-full items-center justify-between px-4 py-5 sm:p-6"
-              >
-                <span className="flex text-lg font-semibold text-black">
-                  How do I get started?
-                </span>
-
-                <ChevronUp className="h-5 w-5 text-gray-500" />
-              </button>
-              <div className="px-4 pb-5 sm:px-6 sm:pb-6">
-                <p className="text-gray-500">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Repellat aliquam adipisci iusto aperiam? Sint asperiores sequi
-                  nobis inventore ratione deleniti?
-                </p>
-              </div>
-            </div>
-            {Array.from({ length: 5 }).map((_, i) => (
+            {faqs.map((faq) => (
               <div
-                key={i}
-                className="cursor-pointer rounded-md border border-gray-400 transition-all duration-200"
+                key={faq.id}
+                className="cursor-pointer rounded-md border border-gray-400 shadow-lg transition-all duration-200"
               >
                 <button
                   type="button"
-                  className="flex w-full items-start justify-between px-4 py-5 sm:p-6 md:items-center"
+                  className="flex w-full items-center justify-between px-4 py-5 sm:p-6"
+                  onClick={() => toggleFaq(faq)}
                 >
-                  <span className="flex text-start text-lg font-semibold text-black">
-                    What is the difference between a free and paid account?
+                  <span className="flex text-lg font-semibold text-black">
+                    {faq.question}
                   </span>
-                  <ChevronDown className="hidden h-5 w-5 text-gray-500 md:block" />
+
+                  {/* <ChevronDown className="h-5 w-5 text-gray-500" /> */}
+                  {activeFaq === faq.id ? (
+                    <ChevronUp className="h-5 w-5 text-gray-500" />
+                  ) : (
+                    <ChevronDown className="h-5 w-5 text-gray-500" />
+                  )}
                 </button>
+                {activeFaq === faq.id && (
+                  <div className="px-4 pb-5 sm:px-6 sm:pb-6">
+                    <p className="text-gray-500">{faq.answer}</p>
+                  </div>
+                )}
               </div>
             ))}
           </div>
           <p className="textbase mt-6 text-center text-gray-600">
             Can&apos;t find what you&apos;re looking for?{" "}
-            <a
-              href="#"
+            <Link
+              to="contact"
               title=""
               className="font-semibold text-black hover:underline"
             >
               Contact our support
-            </a>
+            </Link>
           </p>
         </div>
       </section>

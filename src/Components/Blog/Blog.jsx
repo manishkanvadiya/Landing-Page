@@ -1,9 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { posts } from "../../Assets/data";
 const Blog = () => {
-
-
   return (
     <>
       <div className="mx-auto max-w-7xl px-2">
